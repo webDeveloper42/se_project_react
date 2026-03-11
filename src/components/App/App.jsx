@@ -12,7 +12,7 @@ function App() {
       <div className="page__content">
         <Header />
         <Main weatherData={weatherData} />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );

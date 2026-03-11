@@ -98,4 +98,8 @@ const defaultClothingItems = [
   },
 ];
 
-export { defaultClothingItems };
+const currentDate = new Date().toLocaleString("default", {
+  month: "long",
+  day: "numeric",
+});
+export { defaultClothingItems, currentDate };

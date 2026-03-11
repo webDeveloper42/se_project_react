@@ -1,6 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
+  margin-bottom: 85px;
 }
 .cards__list {
   display: flex;
@@ -8,5 +9,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  gap: 21px;
+  gap: 18px;
+}
+.cards__text {
+  font-weight: 700;
+  font-size: 20px;
 }
