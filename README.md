@@ -1,6 +1,12 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This app showcase usage of React website that includes an Api to tell weather updates based on location. For now the location is hard coded.
+
+Features:
+
+- React
+- Vite
+- RESTful API
 
 Currently, two official plugins are available:
 
