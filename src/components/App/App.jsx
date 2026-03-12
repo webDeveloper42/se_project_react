@@ -50,6 +50,7 @@ function App() {
         />
         <Footer />
         <ModalWithForm
+          isOpen={activeModal === "add-garment"}
           handleCloseClick={handleCloseClick}
           buttonText="Add garment"
           title="New garment"
