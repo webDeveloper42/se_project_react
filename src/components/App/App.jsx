@@ -7,14 +7,15 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi.js";
-import { APIkey, coordinates } from "../../utils/constants";
+import { apiKey, coordinates } from "../../utils/constants";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: {
-      F: 0,
-      C: 0,
+      tempF: 0,
+      tempC: 0,
     },
     city: "",
     country: "",
@@ -32,7 +33,7 @@ function App() {
     setActiveModal("");
   };
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         setWeatherData(filterWeatherData(data));
       })
@@ -42,7 +43,11 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          defaultClothingItems={defaultClothingItems}
+        />
         <Footer />
         <ModalWithForm
           handleCloseClick={handleCloseClick}
@@ -53,19 +58,19 @@ function App() {
           <label htmlFor="name" className="modal__label">
             Name{" "}
             <input
-              type="text "
+              type="text"
               className="modal__input"
               id="name"
               placeholder="Name"
             />
           </label>
-          <label htmlFor="imageUrl" className="modal__label">
+          <label htmlFor="Image URL" className="modal__label">
             Image{" "}
             <input
-              type="url "
+              type="url"
               className="modal__input"
-              id="imageUrl"
-              placeholder="Image Url"
+              id="Image URL"
+              placeholder="Image URL"
             />
           </label>
           <fieldset className="modal__radio-buttons">
@@ -74,21 +79,36 @@ function App() {
               htmlFor="hot"
               className="modal__label modal__label_type_radio"
             >
-              <input id="hot" type="radio" className="modal__radio-input " />{" "}
+              <input
+                name="weather"
+                id="hot"
+                type="radio"
+                className="modal__radio-input "
+              />{" "}
               Hot
             </label>
             <label
               htmlFor="warm"
               className="modal__label modal__label_type_radio"
             >
-              <input id="warm" type="radio" className="modal__radio-input " />{" "}
+              <input
+                name="weather"
+                id="warm"
+                type="radio"
+                className="modal__radio-input "
+              />{" "}
               Warm
             </label>
             <label
               htmlFor="cold"
               className="modal__label modal__label_type_radio"
             >
-              <input id="cold" type="radio" className="modal__radio-input " />{" "}
+              <input
+                name="weather"
+                id="cold"
+                type="radio"
+                className="modal__radio-input "
+              />{" "}
               Cold
             </label>
           </fieldset>

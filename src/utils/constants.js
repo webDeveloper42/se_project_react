@@ -103,9 +103,9 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-const APIkey = `31a14a44665d2fe5249fd8838291fcce`;
+const apiKey = `31a14a44665d2fe5249fd8838291fcce`;
 const coordinates = {
   latitude: 18.20108413696289,
   longitude: -67.13953399658203,
 };
-export { defaultClothingItems, currentDate, APIkey, coordinates };
+export { defaultClothingItems, currentDate, apiKey, coordinates };
