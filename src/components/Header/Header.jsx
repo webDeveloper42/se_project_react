@@ -3,11 +3,13 @@ import Logo from "../../assets/logo.svg";
 import avatarImg from "../../assets/avatar.png";
 import { currentDate } from "../../utils/constants";
 
-function Header({ handleAddClick }) {
+function Header({ handleAddClick, weatherData }) {
   return (
     <header className="header">
       <img className="header__logo" alt="Logo" src={Logo} />
-      <p className="header__date-and-location">{currentDate}, New York</p>
+      <p className="header__date-and-location">
+        {currentDate}, {weatherData.city} {weatherData.country}
+      </p>
       <button
         onClick={handleAddClick}
         type="button"
