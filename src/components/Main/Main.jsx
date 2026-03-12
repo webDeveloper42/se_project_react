@@ -1,8 +1,8 @@
-import "./MainSection.css";
+import "./main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
-function MainSection({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick }) {
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
@@ -30,4 +30,4 @@ function MainSection({ weatherData, handleCardClick }) {
     </main>
   );
 }
-export default MainSection;
+export default Main;

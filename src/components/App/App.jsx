@@ -2,7 +2,7 @@ import { Children, useEffect, useState } from "react";
 import "../../vendor/normalize.css";
 import "./App.css";
 import Header from "../Header/Header";
-import MainSection from "../Main/MainSection.jsx";
+import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
@@ -42,10 +42,7 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <MainSection
-          weatherData={weatherData}
-          handleCardClick={handleCardClick}
-        />
+        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
         <ModalWithForm
           handleCloseClick={handleCloseClick}
