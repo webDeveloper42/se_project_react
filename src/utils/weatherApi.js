@@ -15,8 +15,8 @@ const filterWeatherData = (data) => {
   const results = {
     type: getWeatherType(tempF),
     temp: {
-      tempF,
-      tempC,
+      tempF: tempF,
+      tempC: tempC,
     },
     city: data.name,
     country: data.sys.country,

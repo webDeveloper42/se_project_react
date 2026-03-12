@@ -14,8 +14,8 @@ function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: {
-      F: 0,
-      C: 0,
+      tempF: 0,
+      tempC: 0,
     },
     city: "",
     country: "",
