@@ -13,7 +13,7 @@ const filterWeatherData = (data) => {
   const tempF = Math.round(data.main.temp);
   const tempC = Math.round(((tempF - 32) * 5) / 9);
   const results = {
-    type: getWeatherType(data.weather[0].main),
+    type: getWeatherType(tempF),
     temp: {
       tempF,
       tempC,
