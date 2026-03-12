@@ -22,7 +22,7 @@ const filterWeatherData = (data) => {
     country: data.sys.country,
   };
 
-  console.log(results);
+  // console.log(results);
   // console.log(data);
   // console.log(data.name);
   // console.log(data.sys.country);
@@ -31,16 +31,9 @@ const filterWeatherData = (data) => {
   console.log(results.type);
   return results;
 };
-const getWeatherType = (results, temp, condition) => {
-  if (condition === "Clear" && temp >= 86) return "hot";
-  if (
-    (condition === "Clouds" || condition === "Drizzle") &&
-    temp >= 66 &&
-    temp <= 86
-  )
-    return "warm";
-  if ((condition === "Rain" || condition === "Snow") && temp <= 65)
-    return "cold";
+const getWeatherType = (temp) => {
+  if (temp >= 86) return "hot";
+  if (temp >= 66) return "warm";
   return "cold";
 };
 export { getWeather, filterWeatherData };
