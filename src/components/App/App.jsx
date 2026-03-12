@@ -13,7 +13,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const handleCardClick = (card) => {
     setActiveModal("preview");
-    selectedCard(card);
+    setSelectedCard(card);
   };
   const handleAddClick = () => {
     setActiveModal("add-garment");

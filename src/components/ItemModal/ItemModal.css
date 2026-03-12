@@ -1,0 +1,24 @@
+.modal__image {
+  width: 498px;
+  position: relative;
+  top: -28px;
+  left: -28px;
+  border-radius: 20px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.modal__close {
+  z-index: 1;
+}
+.modal__caption,
+.modal__weather {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.modal__caption {
+  margin-bottom: 12px;
+}

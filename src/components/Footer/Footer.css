@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
+  align-items: center;
 }
 .footer__developer-rights,
 .footer__year {
