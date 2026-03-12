@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi.js";
-import { APIkey, coordinates } from "../../utils/constants";
+import { apiKey, coordinates } from "../../utils/constants";
 import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
     setActiveModal("");
   };
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         setWeatherData(filterWeatherData(data));
       })
