@@ -19,7 +19,7 @@ function Header({ handleAddClick, weatherData }) {
       </button>
       <div className="header__user-container">
         <p className="header__username">Terrence Tegegne</p>
-        <img src={avatarImg} alt="Username" className="header__avatar" />
+        <img src={avatarImg} alt="User avatar" className="header__avatar" />
       </div>
     </header>
   );
