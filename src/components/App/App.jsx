@@ -12,7 +12,7 @@ import CurrentTemperatureUnit from "../../contexts/currentTemperatureUnitContext
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-import { addItem } from "../../utils/api.js";
+import { getItems, addItem } from "../../utils/api.js";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
@@ -36,10 +36,16 @@ function App() {
   const handleCloseClick = () => {
     setActiveModal("");
   };
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
         setWeatherData(filterWeatherData(data));
+      })
+      .catch(console.error);
+    getItems()
+      .then((items) => {
+        setClothingItems(items);
       })
       .catch(console.error);
   }, []);
@@ -49,7 +55,6 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const handleAddItemSubmit = (item) => {
     console.log(`sending api`, item);
     addItem(item)
@@ -60,6 +65,7 @@ function App() {
       })
       .catch(console.error);
   };
+
   return (
     <div className="page">
       <CurrentTemperatureUnit.Provider
@@ -74,7 +80,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  defaultClothingItems={defaultClothingItems}
+                  defaultClothingItems={clothingItems}
                 />
               }
             />
@@ -84,7 +90,7 @@ function App() {
                 <Profile
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  defaultClothingItems={defaultClothingItems}
+                  defaultClothingItems={clothingItems}
                   onAddItem={handleAddClick}
                   onCloseModal={handleCloseClick}
                 />
