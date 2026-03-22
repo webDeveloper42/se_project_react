@@ -39,6 +39,7 @@ function App() {
       })
       .catch(console.error);
   }, []);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   return (
     <div className="page">
       <div className="page__content">

@@ -3,6 +3,7 @@
   justify-content: space-between;
   margin-bottom: 24px;
   align-items: center;
+  margin-top: auto;
 }
 .footer__developer-rights,
 .footer__year {
