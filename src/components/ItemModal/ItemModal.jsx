@@ -6,7 +6,12 @@ function ItemModal({ activeModal, card, handleCloseClick }) {
       onClick={handleCloseClick}
       className={`modal  ${activeModal === "preview" && "modal_opened"}`}
     >
-      <div className="modal__content modal__content_type_image">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="modal__content modal__content_type_image"
+      >
         <button
           onClick={handleCloseClick}
           type="button"
@@ -22,7 +27,9 @@ function ItemModal({ activeModal, card, handleCloseClick }) {
         <div className="modal__footer">
           <div className="modal__footer-heading">
             <h2 className="modal__caption">{card.name}</h2>
-            <button className="modal__delete-btn">Delete Item</button>
+            <button type="button" className="modal__delete-btn">
+              Delete Item
+            </button>
           </div>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>
