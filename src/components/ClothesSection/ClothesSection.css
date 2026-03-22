@@ -2,3 +2,30 @@
   display: flex;
   gap: 20px;
 }
+
+.profile__add-clothes-btn {
+  display: flex;
+  margin: 0 20px 0 20px;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  opacity: 60%;
+  height: 20px;
+  align-self: center;
+}
+.profile__add-clothes-btn:hover {
+  opacity: 1;
+}
+
+.profile__add-clothes-btn-icon {
+  padding-bottom: 4px;
+  padding-right: 5px;
+}

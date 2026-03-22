@@ -3,16 +3,22 @@ import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
-  const { values, handleChange } = useForm({
+  const { values, handleChange, handleReset } = useForm({
     name: "",
     imageUrl: "",
     weather: "",
   });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(`form values `, values);
+    onAddItem(values);
+    handleReset();
+  };
   return (
     <ModalWithForm
       isOpen={isOpen}
       handleCloseClick={onCloseModal}
-      onSubmit={onAddItem}
+      onSubmit={handleSubmit}
       buttonText="Add garment"
       title="New garment"
     >
@@ -21,16 +27,19 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         <input
           type="text"
           className="modal__input"
+          name="name"
+          value={values.name}
+          onChange={handleChange}
           id="name"
           placeholder="Name"
         />
       </label>
-      <label htmlFor="Image URL" className="modal__label">
+      <label htmlFor="imgUrl" className="modal__label">
         Image{" "}
         <input
           type="url"
           className="modal__input"
-          name="imagUrl"
+          name="imageUrl"
           id="imageUrl"
           value={values.imageUrl}
           onChange={handleChange}

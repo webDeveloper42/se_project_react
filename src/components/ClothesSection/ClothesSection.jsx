@@ -16,8 +16,7 @@ function ClothesSection({
           type="button"
           className="profile__add-clothes-btn"
         >
-          <span className="profile__add-clothes-btn-icon">&#43;</span> Add
-          Clothes
+          <span className="profile__add-clothes-btn-icon">&#43;</span> Add new
         </button>
       </section>
       <section className="cards profile__cards">

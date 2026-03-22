@@ -13,7 +13,7 @@ import CurrentTemperatureUnit from "../../contexts/currentTemperatureUnitContext
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-
+import { getItems, addItem } from "../../utils/api.js";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
@@ -48,9 +48,19 @@ function App() {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
-    // console.log(checked);
   };
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const handleAddItemSubmit = (item) => {
+    console.log(`sending api`, item);
+    addItem(item)
+      .then((newItem) => {
+        console.log(`sending api`, newItem);
+        setClothingItems([newItem, ...clothingItems]);
+        handleCloseClick();
+      })
+      .catch(console.error);
+  };
   return (
     <div className="page">
       <CurrentTemperatureUnit.Provider
@@ -91,7 +101,7 @@ function App() {
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onCloseModal={handleCloseClick}
-            onAddItem={handleAddClick}
+            onAddItem={handleAddItemSubmit}
           />
         </div>
       </CurrentTemperatureUnit.Provider>
