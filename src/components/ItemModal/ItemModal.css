@@ -19,6 +19,18 @@
   margin: 0;
 }
 
-.modal__caption {
+.modal__footer-heading {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
   margin-bottom: 12px;
+}
+
+.modal__delete-btn {
+  padding: 0;
+  border: none;
+  color: #ff4d00;
+  background-color: transparent;
+  font-size: 20px;
 }
