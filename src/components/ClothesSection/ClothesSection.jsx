@@ -1,12 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({
-  weatherData,
-  handleCardClick,
-  defaultClothingItems,
-  onAddItem,
-}) {
+function ClothesSection({ handleCardClick, defaultClothingItems, onAddItem }) {
   return (
     <div className="profile__clothes-section">
       <section className="profile__header">

@@ -1,10 +1,9 @@
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../../vendor/normalize.css";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi.js";
 import { apiKey, coordinates } from "../../utils/constants";
@@ -13,7 +12,7 @@ import CurrentTemperatureUnit from "../../contexts/currentTemperatureUnitContext
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-import { getItems, addItem } from "../../utils/api.js";
+import { addItem } from "../../utils/api.js";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
