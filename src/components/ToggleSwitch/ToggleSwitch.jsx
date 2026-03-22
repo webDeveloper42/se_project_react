@@ -1,36 +1,22 @@
-import { useState } from "react";
+import { useContext } from "react";
 import "./ToggleSwitch.css";
+import CurrentTemperatureUnit from "../../contexts/currentTemperatureUnitContext";
 function ToggleSwitch() {
   const checkboxes = ["F", "C"];
-  function destructurePropertyKeyValuePair(obj1, obj2, obj3) {
-    return { ...obj1, [obj2]: obj3 };
-  }
-  const [checked, setCheck] = useState(
-    checkboxes.reduce(
-      (acc, type) => destructurePropertyKeyValuePair(acc, type, type === "F"),
-      {},
-    ),
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
+    CurrentTemperatureUnit,
   );
-  const handleChange = (box) => {
-    setCheck(
-      checkboxes.reduce(
-        (acc, type) => destructurePropertyKeyValuePair(acc, type, type === box),
-        {},
-      ),
-    );
-    console.log(checked);
-  };
   function createCheckBox(text) {
     return (
       <label
         key={text}
-        className={`toggle-label ${checked[text] ? "toggle-active" : ""}`}
+        className={`toggle-label ${currentTemperatureUnit === text ? "toggle-active" : ""}`}
         htmlFor={`temp-${text}`}
       >
         {text}
         <input
-          checked={checked[text]}
-          onChange={() => handleChange(text)}
+          checked={currentTemperatureUnit === text}
+          onChange={() => handleToggleSwitchChange(text)}
           type="checkbox"
           name={`${text.toUpperCase()}`}
           id={`temp-${text}`}
@@ -41,7 +27,9 @@ function ToggleSwitch() {
   }
   return (
     <div className="toggle-container">
-      <div className={`toggle-slider ${checked.C ? "slider-right" : ""}`}></div>
+      <div
+        className={`toggle-slider ${currentTemperatureUnit === "C" ? "slider-right" : ""}`}
+      ></div>
       {checkboxes.map((box) => {
         return createCheckBox(box);
       })}

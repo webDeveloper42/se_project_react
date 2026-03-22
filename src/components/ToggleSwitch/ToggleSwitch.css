@@ -24,6 +24,13 @@
   height: 28px;
   text-align: center;
 }
+.toggle-container:hover,
+.toggle-label:hover {
+  opacity: 1;
+}
+.toggle-container:hover {
+  border: 2px solid #000000;
+}
 .toggle-btn {
   display: none;
 }
@@ -33,7 +40,7 @@
 }
 .toggle-slider {
   position: absolute;
-  transition: transform 1s ease;
+  transition: transform 0.6s ease;
   transform: translateX(0);
   color: #ffffff;
   background-color: #000000;
