@@ -1,17 +1,17 @@
 import "./Profile.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-function Profile() {
+import ItemCard from "../ItemCard/ItemCard";
+import Sidebar from "../Sidebar/Sidebar";
+import ClothesSection from "../ClothesSection/ClothesSection";
+function Profile({ weatherData, handleCardClick, defaultClothingItems }) {
   return (
     <div className="profile">
-      <div className="profile__sidebar">
-        <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img src={avatarImg} alt="User avatar" className="header__avatar" />
-        </div>
-      </div>
-      <ClothesSection>
-        <AddItemModal />
-      </ClothesSection>
+      <Sidebar />
+      <ClothesSection
+        weatherData={weatherData}
+        handleCardClick={handleCardClick}
+        defaultClothingItems={defaultClothingItems}
+      />
     </div>
   );
 }

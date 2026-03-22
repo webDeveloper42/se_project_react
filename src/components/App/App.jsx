@@ -67,7 +67,16 @@ function App() {
                 />
               }
             />
-            <Route path="/Profile" element={<Profile />} />
+            <Route
+              path="/Profile"
+              element={
+                <Profile
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  defaultClothingItems={defaultClothingItems}
+                />
+              }
+            />
           </Routes>
           <Footer />
           <ModalWithForm

@@ -1,0 +1,10 @@
+.profile {
+  display: flex;
+}
+
+.profile__list {
+  gap: 20px;
+}
+.profile__card {
+  width: 303px;
+}

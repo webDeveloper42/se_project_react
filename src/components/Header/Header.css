@@ -50,3 +50,7 @@
 .header__username {
   margin: 0;
 }
+.header__link {
+  text-decoration: none;
+  color: inherit;
+}
