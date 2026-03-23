@@ -42,11 +42,36 @@ function App() {
     setActiveModal("delete");
   };
   useEffect(() => {
-    getWeather(coordinates, apiKey)
-      .then((data) => {
-        setWeatherData(filterWeatherData(data));
-      })
-      .catch(console.error);
+    const loadWeather = (coords) => {
+      getWeather(coords, apiKey)
+        .then((data) => {
+          setWeatherData(filterWeatherData(data));
+        })
+        .catch((err) => {
+          console.error("Weather fetch failed", err);
+          getWeather(coordinates, apiKey)
+            .then((data) => setWeatherData(filterWeatherData(data)))
+            .catch(console.error);
+        });
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          loadWeather({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.warn("Geolocation failed, using default coordinates", error);
+          loadWeather(coordinates);
+        },
+      );
+    } else {
+      loadWeather(coordinates);
+    }
+
     getItems()
       .then((items) => {
         setClothingItems(items);
