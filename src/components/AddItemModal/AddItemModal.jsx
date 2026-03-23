@@ -1,6 +1,7 @@
 import { useForm } from "../../hooks/useForm";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useEffect } from "react";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const { values, handleChange, handleReset } = useForm({
@@ -10,10 +11,13 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`form values `, values);
     onAddItem(values);
-    handleReset();
   };
+  useEffect(() => {
+    if (isOpen) {
+      handleReset();
+    }
+  }, [isOpen]);
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -32,6 +36,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           onChange={handleChange}
           id="name"
           placeholder="Name"
+          required
         />
       </label>
       <label htmlFor="imgUrl" className="modal__label">
@@ -44,6 +49,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           value={values.imageUrl}
           onChange={handleChange}
           placeholder="Image URL"
+          required
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -56,6 +62,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             value="hot"
             onChange={handleChange}
             className="modal__radio-input "
+            required
           />{" "}
           Hot
         </label>

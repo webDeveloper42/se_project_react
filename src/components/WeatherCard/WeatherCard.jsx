@@ -13,7 +13,7 @@ function WeatherCard({ weatherData }) {
           : weatherData.temp.tempC}
         &deg;{currentTemperatureUnit}
       </p>
-      <img src={sunny} alt="" className="weather-card__image" />
+      <img src={sunny} alt="Sunny weather" className="weather-card__image" />
     </section>
   );
 }

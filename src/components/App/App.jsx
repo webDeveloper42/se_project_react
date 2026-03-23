@@ -52,17 +52,15 @@ function App() {
       })
       .catch(console.error);
   }, []);
-  const handleToggleSwitchChange = (box) => {
+  const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleAddItemSubmit = (item) => {
-    console.log(`sending api`, item);
     addItem(item)
       .then((newItem) => {
-        console.log(`sending api`, newItem);
         setClothingItems([newItem, ...clothingItems]);
         handleCloseClick();
       })
@@ -97,7 +95,7 @@ function App() {
               }
             />
             <Route
-              path="/Profile"
+              path="/profile"
               element={
                 <Profile
                   weatherData={weatherData}
