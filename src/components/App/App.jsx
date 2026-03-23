@@ -61,7 +61,12 @@ function App() {
   const handleAddItemSubmit = (item) => {
     addItem(item)
       .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
+        const normalized = {
+          ...newItem,
+          _id: newItem._id || newItem.id || item._id || item.id,
+        };
+
+        setClothingItems([normalized, ...clothingItems]);
         handleCloseClick();
       })
       .catch(console.error);
