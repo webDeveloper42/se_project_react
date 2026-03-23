@@ -14,8 +14,8 @@ const addItem = ({ name, imageUrl, weather }) => {
     res.ok ? res.json() : Promise.reject(`Error: ${res.status}`),
   );
 };
-const deleteItem = (id) => {
-  return fetch(`${BASE_URL}/items/${id}`, {
+const deleteItem = (_id) => {
+  return fetch(`${BASE_URL}/items/${_id}`, {
     method: "DELETE",
   }).then((res) =>
     res.ok ? res.json() : Promise.reject(`Error: ${res.status}`),

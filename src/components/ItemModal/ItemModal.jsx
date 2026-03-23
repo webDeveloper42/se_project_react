@@ -1,10 +1,15 @@
 import "./ItemModal.css";
 import closeBtn from "../../assets/closeBtnWhite.svg";
-function ItemModal({ activeModal, card, handleCloseClick }) {
+function ItemModal({
+  activeModal,
+  card,
+  handleCloseClick,
+  handleOpenDeleteModal,
+}) {
   return (
     <div
       onClick={handleCloseClick}
-      className={`modal  ${activeModal === "preview" && "modal_opened"}`}
+      className={`modal modal__delete  ${activeModal === "preview" && "modal_opened"}`}
     >
       <div
         onClick={(e) => {
@@ -27,7 +32,11 @@ function ItemModal({ activeModal, card, handleCloseClick }) {
         <div className="modal__footer">
           <div className="modal__footer-heading">
             <h2 className="modal__caption">{card.name}</h2>
-            <button type="button" className="modal__delete-btn">
+            <button
+              onClick={handleOpenDeleteModal}
+              type="button"
+              className="modal__delete-btn"
+            >
               Delete Item
             </button>
           </div>

@@ -12,7 +12,8 @@ import CurrentTemperatureUnit from "../../contexts/currentTemperatureUnitContext
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-import { getItems, addItem } from "../../utils/api.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
@@ -31,10 +32,12 @@ function App() {
   };
   const handleAddClick = () => {
     setActiveModal("add-garment");
-    console.log("clicked");
   };
   const handleCloseClick = () => {
     setActiveModal("");
+  };
+  const handleOpenDeleteModal = () => {
+    setActiveModal("delete");
   };
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   useEffect(() => {
@@ -65,7 +68,16 @@ function App() {
       })
       .catch(console.error);
   };
-
+  const handleDeleteItem = () => {
+    deleteItem(selectedCard._id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== selectedCard._id),
+        );
+        handleCloseClick();
+      })
+      .catch(console.error);
+  };
   return (
     <div className="page">
       <CurrentTemperatureUnit.Provider
@@ -102,11 +114,17 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             handleCloseClick={handleCloseClick}
+            handleOpenDeleteModal={handleOpenDeleteModal}
           />
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onCloseModal={handleCloseClick}
             onAddItem={handleAddItemSubmit}
+          />
+          <DeleteModal
+            handleCloseClick={handleCloseClick}
+            onDelete={handleDeleteItem}
+            isOpen={activeModal === "delete"}
           />
         </div>
       </CurrentTemperatureUnit.Provider>
