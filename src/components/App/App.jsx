@@ -26,6 +26,8 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -39,7 +41,6 @@ function App() {
   const handleOpenDeleteModal = () => {
     setActiveModal("delete");
   };
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
@@ -57,7 +58,6 @@ function App() {
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleAddItemSubmit = (item) => {
     addItem(item)
       .then((newItem) => {
