@@ -31,7 +31,6 @@ function ModalWithForm({
           <button
             type="submit"
             className="modal__submit"
-            disabled={isValid === false}
           >
             {buttonText}
           </button>

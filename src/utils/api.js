@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3001";
+
 const checkRes = async (res) => {
   if (res.ok) {
     const contentType = res.headers.get("content-type") || "";
@@ -29,39 +30,32 @@ const checkRes = async (res) => {
 
   return Promise.reject(`Error ${res.status}: ${message}`);
 };
+
 const getItems = () => {
   return fetch(`${BASE_URL}/items`).then(checkRes);
 };
-const addItem = ({ name, imageUrl, weather, id, _id }, token) => {
+
+const addItem = ({ name, imageUrl, weather }, token) => {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-    body: JSON.stringify({ name, imageUrl, weather, id, _id }),
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkRes);
 };
-const signUp = ({ name, avatar, email, password }) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, avatar, email, password }),
+
+const deleteItem = (_id, token) => {
+  return fetch(`${BASE_URL}/items/${_id}`, {
+    method: "DELETE",
+    headers: { authorization: `Bearer ${token}` },
   }).then(checkRes);
 };
-const logIn = ({ email, password }) => {
-  return fetch(`${BASE_URL}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  }).then(checkRes);
-};
-const getCurrentUser = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-  }).then(checkRes);
-};
+
 const updateUser = ({ name, avatar }, token) => {
   return fetch(`${BASE_URL}/users/me`, {
-    method: "UPDATE",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
@@ -69,12 +63,7 @@ const updateUser = ({ name, avatar }, token) => {
     body: JSON.stringify({ name, avatar }),
   }).then(checkRes);
 };
-const deleteItem = (_id, token) => {
-  return fetch(`${BASE_URL}/items/${_id}`, {
-    method: "DELETE",
-    headers: { authorization: `Bearer ${token}` },
-  }).then(checkRes);
-};
+
 const addCardLike = (_id, token) => {
   return fetch(`${BASE_URL}/items/${_id}/likes`, {
     method: "PUT",
@@ -84,6 +73,7 @@ const addCardLike = (_id, token) => {
     },
   }).then(checkRes);
 };
+
 const removeCardLike = (_id, token) => {
   return fetch(`${BASE_URL}/items/${_id}/likes`, {
     method: "DELETE",
@@ -93,14 +83,12 @@ const removeCardLike = (_id, token) => {
     },
   }).then(checkRes);
 };
+
 export {
   checkRes,
   getItems,
   addItem,
-  signUp,
-  logIn,
   deleteItem,
-  getCurrentUser,
   updateUser,
   addCardLike,
   removeCardLike,

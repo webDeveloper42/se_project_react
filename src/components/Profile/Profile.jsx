@@ -3,18 +3,17 @@ import Sidebar from "../Sidebar/Sidebar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
 function Profile({
-  weatherData,
   handleCardClick,
   defaultClothingItems,
   onAddItem,
   onEditProfile,
   onCardLike,
+  onLogout,
 }) {
   return (
     <div className="profile">
-      <Sidebar onEditProfile={onEditProfile} />
+      <Sidebar onEditProfile={onEditProfile} onLogout={onLogout} />
       <ClothesSection
-        weatherData={weatherData}
         handleCardClick={handleCardClick}
         defaultClothingItems={defaultClothingItems}
         onAddItem={onAddItem}
@@ -23,4 +22,5 @@ function Profile({
     </div>
   );
 }
+
 export default Profile;
