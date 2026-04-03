@@ -56,7 +56,7 @@ function App() {
         setCurrentUser(updatedUser);
         handleCloseClick();
       })
-      .catch(console.error);
+      .catch((err) => `Error: ${err.status}`);
   };
 
   const handleLoginSubmit = ({ email, password }) => {
@@ -70,7 +70,7 @@ function App() {
         setCurrentUser(user);
         handleCloseClick();
       })
-      .catch(console.error);
+      .catch((err) => `Error: ${err.status}`);
   };
 
   const handleLogout = () => {
@@ -119,10 +119,10 @@ function App() {
           setWeatherData(filterWeatherData(data));
         })
         .catch((err) => {
-          console.error("Weather fetch failed", err);
+          (err) => `Error: ${err.status}`("Weather fetch failed", err);
           getWeather(coordinates, apiKey)
             .then((data) => setWeatherData(filterWeatherData(data)))
-            .catch(console.error);
+            .catch((err) => `Error: ${err.status}`);
         });
     };
 
@@ -187,7 +187,7 @@ function App() {
         setClothingItems([normalized, ...clothingItems]);
         handleCloseClick();
       })
-      .catch(console.error);
+      .catch((err) => `Error: ${err.status}`);
   };
 
   const handleDeleteItem = () => {
@@ -199,7 +199,7 @@ function App() {
         );
         handleCloseClick();
       })
-      .catch(console.error);
+      .catch((err) => `Error: ${err.status}`);
   };
 
   const handleRegister = ({ name, avatar, email, password }) => {
@@ -216,7 +216,7 @@ function App() {
         setCurrentUser(user);
         handleCloseClick();
       })
-      .catch(console.error);
+      .catch((err) => `Error: ${err.status}`);
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -232,7 +232,7 @@ function App() {
           items.map((item) => (item._id === id ? updatedCard : item)),
         );
       })
-      .catch(console.error);
+      .catch((err) => `Error: ${err.status}`);
   };
 
   return (

@@ -40,7 +40,7 @@ const signUp = ({ name, avatar, email, password }) => {
 };
 
 const logIn = ({ email, password }) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${BASE_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),

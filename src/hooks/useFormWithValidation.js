@@ -11,32 +11,47 @@ function useFormWithValidation(defaultValues = {}) {
   const validateForm = useCallback(
     (nextValues = values) => {
       const nextErrors = {};
+      const fields = Object.keys(nextValues);
 
-      if (!nextValues.name?.trim()) {
+      if (fields.includes("name") && !nextValues.name?.trim()) {
         nextErrors.name = "Name is required.";
       }
 
-      if (!nextValues.imageUrl?.trim()) {
-        nextErrors.imageUrl = "Image URL is invalid.";
-      } else {
-        const rawUrl = nextValues.imageUrl.trim();
-        const hasProtocol = /^https?:\/\//i.test(rawUrl);
-        const attemptUrl = hasProtocol ? rawUrl : `https://${rawUrl}`;
+      if (fields.includes("imageUrl")) {
+        if (!nextValues.imageUrl?.trim()) {
+          nextErrors.imageUrl = "Image URL is invalid.";
+        } else {
+          const rawUrl = nextValues.imageUrl.trim();
+          const hasProtocol = /^https?:\/\//i.test(rawUrl);
+          const attemptUrl = hasProtocol ? rawUrl : `https://${rawUrl}`;
 
-        try {
-          const parsed = new URL(attemptUrl);
-          if (!parsed.protocol.match(/^https?:$/i)) {
-            nextErrors.imageUrl = "Image URL is invalid.";
-          } else if (!parsed.hostname || !parsed.hostname.includes(".")) {
+          try {
+            const parsed = new URL(attemptUrl);
+            if (!parsed.protocol.match(/^https?:$/i)) {
+              nextErrors.imageUrl = "Image URL is invalid.";
+            } else if (!parsed.hostname || !parsed.hostname.includes(".")) {
+              nextErrors.imageUrl = "Image URL is invalid.";
+            }
+          } catch (error) {
             nextErrors.imageUrl = "Image URL is invalid.";
           }
-        } catch (error) {
-          nextErrors.imageUrl = "Image URL is invalid.";
         }
       }
 
-      if (!nextValues.weather) {
+      if (fields.includes("weather") && !nextValues.weather) {
         nextErrors.weather = "Please select weather type.";
+      }
+
+      if (fields.includes("email") && !nextValues.email?.trim()) {
+        nextErrors.email = "Email is required.";
+      }
+
+      if (fields.includes("password") && !nextValues.password?.trim()) {
+        nextErrors.password = "Password is required.";
+      }
+
+      if (fields.includes("avatar") && !nextValues.avatar?.trim()) {
+        nextErrors.avatar = "Avatar URL is required.";
       }
 
       setErrors(nextErrors);

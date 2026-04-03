@@ -7,8 +7,8 @@
 }
 .sidebar-container {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: start;
   width: 289px;
 }
 .sidebar-avatar {
