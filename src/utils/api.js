@@ -1,22 +1,30 @@
 const BASE_URL = "http://localhost:3001";
 const checkRes = async (res) => {
   if (res.ok) {
-    return res.json();
+    const contentType = res.headers.get("content-type") || "";
+    if (contentType.includes("application/json")) {
+      return res.json();
+    }
+    return res.text();
   }
 
   const contentType = res.headers.get("content-type") || "";
-
   let message = `Error ${res.status}`;
-  try {
-    if (contentType.includes("application/json")) {
+
+  if (contentType.includes("application/json")) {
+    try {
       const data = await res.json();
       message = data.message || JSON.stringify(data);
-    } else {
+    } catch (err) {
+      message = `Response body is not valid JSON`;
+    }
+  } else {
+    try {
       const text = await res.text();
       if (text) message = text;
+    } catch (err) {
+      /* ignore */
     }
-  } catch (err) {
-    // fallback to status-only message
   }
 
   return Promise.reject(`Error ${res.status}: ${message}`);
@@ -24,16 +32,76 @@ const checkRes = async (res) => {
 const getItems = () => {
   return fetch(`${BASE_URL}/items`).then(checkRes);
 };
-const addItem = ({ name, imageUrl, weather, id, _id }) => {
+const addItem = ({ name, imageUrl, weather, id, _id }, token) => {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
     body: JSON.stringify({ name, imageUrl, weather, id, _id }),
   }).then(checkRes);
 };
-const deleteItem = (_id) => {
-  return fetch(`${BASE_URL}/items/${_id}`, {
-    method: "DELETE",
+const signUp = ({ name, avatar, email, password }) => {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, avatar, email, password }),
   }).then(checkRes);
 };
-export { checkRes, getItems, addItem, deleteItem };
+const logIn = ({ email, password }) => {
+  return fetch(`${BASE_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  }).then(checkRes);
+};
+const getCurrentUser = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+  }).then(checkRes);
+};
+const updateUser = ({ name, avatar }, token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "UPDATE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkRes);
+};
+const deleteItem = (_id, token) => {
+  return fetch(`${BASE_URL}/items/${_id}`, {
+    method: "DELETE",
+    headers: { authorization: `Bearer ${token}` },
+  }).then(checkRes);
+};
+const addCardLike = (_id, token) => {
+  return fetch(`${BASE_URL}/items/${_id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
+};
+const removeCardLike = (_id, token) => {
+  return fetch(`${BASE_URL}/items/${_id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkRes);
+};
+export {
+  checkRes,
+  getItems,
+  addItem,
+  signUp,
+  logIn,
+  deleteItem,
+  getCurrentUser,
+  updateUser,
+  addCardLike,
+  removeCardLike,
+};

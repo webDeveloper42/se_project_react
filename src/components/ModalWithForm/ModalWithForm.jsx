@@ -8,6 +8,9 @@ function ModalWithForm({
   handleCloseClick,
   isOpen,
   onSubmit,
+  isValid,
+  secondaryButtonText,
+  onSecondaryClick,
 }) {
   return (
     <div
@@ -25,9 +28,22 @@ function ModalWithForm({
         </button>
         <form action="" onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
+          <button
+            type="submit"
+            className="modal__submit"
+            disabled={isValid === false}
+          >
             {buttonText}
           </button>
+          {secondaryButtonText && onSecondaryClick && (
+            <button
+              type="button"
+              className="modal__secondary-btn"
+              onClick={onSecondaryClick}
+            >
+              {secondaryButtonText}
+            </button>
+          )}
         </form>
       </div>
     </div>

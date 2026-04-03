@@ -1,11 +1,19 @@
 import "./Header.css";
 import Logo from "../../assets/logo.svg";
-import avatarImg from "../../assets/avatar.png";
 import { currentDate } from "../../utils/constants";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  handleRegisterClick,
+  handleLoginClick,
+  weatherData,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <Link to="/">
@@ -15,19 +23,45 @@ function Header({ handleAddClick, weatherData }) {
         {currentDate}, {weatherData.city} {weatherData.country}
       </p>
       <ToggleSwitch />
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        <span className="header__add-clothes-btn-icon">&#43;</span> Add Clothes
-      </button>
-      <Link to="/profile" className="header__link">
-        <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img src={avatarImg} alt="User avatar" className="header__avatar" />
-        </div>
-      </Link>
+      {currentUser ? (
+        <>
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            <span className="header__add-clothes-btn-icon">&#43;</span> Add
+            Clothes
+          </button>
+          <Link to="/profile" className="header__link">
+            <div className="header__user-container">
+              <p className="header__username">{currentUser.name}</p>
+              <img
+                src={currentUser.avatar}
+                alt="User avatar"
+                className="header__avatar"
+              />
+            </div>
+          </Link>
+        </>
+      ) : (
+        <>
+          <button
+            onClick={handleRegisterClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            Sign Up
+          </button>
+          <button
+            onClick={handleLoginClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            Login
+          </button>
+        </>
+      )}
     </header>
   );
 }

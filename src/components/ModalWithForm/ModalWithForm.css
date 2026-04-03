@@ -114,3 +114,22 @@
 .disabled {
   background-color: rgba(0, 0, 0, 0.3);
 }
+.modal__submit:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+.modal__secondary-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  margin-top: 12px;
+  padding: 0;
+  align-self: flex-start;
+}
+.modal__secondary-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
