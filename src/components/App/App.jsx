@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../vendor/normalize.css";
+import "../../vendor/font.css";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -29,6 +31,7 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
+  const navigate = useNavigate();
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: {
@@ -69,6 +72,7 @@ function App() {
         setIsLoggedIn(true);
         setCurrentUser(user);
         handleCloseClick();
+        navigate("/");
       })
       .catch((err) => `Error: ${err.status}`);
   };
@@ -77,6 +81,7 @@ function App() {
     localStorage.removeItem("jwt");
     setCurrentUser(null);
     setIsLoggedIn(false);
+    navigate("/");
   };
 
   const handleSwitchToRegister = () => {
