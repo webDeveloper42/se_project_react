@@ -49,14 +49,14 @@ function Header({
           <button
             onClick={handleRegisterClick}
             type="button"
-            className="header__add-clothes-btn"
+            className="header__add-clothes-btn header__sign-up"
           >
             Sign Up
           </button>
           <button
             onClick={handleLoginClick}
             type="button"
-            className="header__add-clothes-btn"
+            className="header__add-clothes-btn header__login"
           >
             Login
           </button>

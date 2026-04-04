@@ -13,20 +13,24 @@ function Sidebar({ onEditProfile, onLogout }) {
           alt="User avatar"
           className="header__avatar sidebar-avatar"
         />
-        <p className="header__username sidebar-username">
-          {currentUser?.name}
-        </p>
+        <p className="header__username sidebar-username">{currentUser?.name}</p>
       </div>
-      <button
-        onClick={onEditProfile}
-        type="button"
-        className="sidebar__edit-btn"
-      >
-        Change Profile Data
-      </button>
-      <button onClick={onLogout} type="button" className="sidebar__logout-btn">
-        Log out
-      </button>
+      <div className="sidebar__container-btns">
+        <button
+          onClick={onEditProfile}
+          type="button"
+          className="sidebar__edit-btn"
+        >
+          Change Profile Data
+        </button>
+        <button
+          onClick={onLogout}
+          type="button"
+          className="sidebar__logout-btn"
+        >
+          Log out
+        </button>
+      </div>
     </div>
   );
 }

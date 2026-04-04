@@ -1,8 +1,8 @@
 import "./ItemCard.css";
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import CardLike from "../../assets/card__like.png";
-import CardLiked from "../../assets/card__like-active.png";
+import CardLike from "../../assets/card__like.svg";
+import CardLiked from "../../assets/card__liked.svg";
 
 function ItemCard({ item, onCardClick, className, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);

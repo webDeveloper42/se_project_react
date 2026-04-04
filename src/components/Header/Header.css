@@ -54,3 +54,12 @@
   text-decoration: none;
   color: inherit;
 }
+.header__login,
+.header__sign-up {
+  margin: 0 0 0 20px;
+}
+.header__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50px;
+}

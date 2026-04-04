@@ -28,6 +28,9 @@ function EditProfileModal({ isOpen, onCloseModal, onUpdateUser }) {
       onSubmit={handleSubmit}
       buttonText="Save changes"
       title="Change Profile Data"
+      className="edit-profile-modal"
+      submitClassName="edit-profile-modal__submit"
+      isValid={name.trim() !== ""}
     >
       <label htmlFor="edit-name" className="modal__label">
         Name

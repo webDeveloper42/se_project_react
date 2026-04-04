@@ -100,7 +100,7 @@
   margin-bottom: 12px;
 }
 .modal__submit {
-  width: 124px;
+  width: 90px;
   height: 36px;
   background-color: rgba(0, 0, 0, 1);
   color: #ffffff;
@@ -115,8 +115,7 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 .modal__submit:disabled {
-  background-color: rgba(0, 0, 0, 0.3);
-  cursor: not-allowed;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .modal__secondary-btn {
   background: none;
@@ -125,11 +124,14 @@
   font-size: 16px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
-  text-decoration: underline;
   margin-top: 12px;
   padding: 0;
   align-self: flex-start;
 }
 .modal__secondary-btn:hover {
   color: rgba(0, 0, 0, 0.8);
+}
+.modal__form-btns-container {
+  display: flex;
+  gap: 5px;
 }
