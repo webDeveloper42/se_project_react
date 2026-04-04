@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../vendor/normalize.css";
-import "../../vendor/font.css";
+import "../../vendor/fonts.css";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
