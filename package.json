@@ -10,7 +10,12 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "jest jest-demo"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
   },
   "dependencies": {
     "express": "^4.22.1",
@@ -30,7 +35,10 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "gh-pages": "^6.3.0",
     "globals": "^15.11.0",
+    "jest": "^30.3.0",
     "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
+    "supertest": "^7.2.2",
     "vite": "^5.4.10"
   },
   "description": "This app showcase usage of React website that includes an Api to tell weather updates based on location. For now the location is hard coded.",
