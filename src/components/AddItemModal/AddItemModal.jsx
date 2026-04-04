@@ -83,7 +83,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       )}
 
       <label
-        htmlFor="imgUrl"
+        htmlFor="imageUrl"
         className={`modal__label ${(isSubmitted || touched.imageUrl) && errors.imageUrl ? "modal__label_error" : ""}`}
       >
         Image{" "}

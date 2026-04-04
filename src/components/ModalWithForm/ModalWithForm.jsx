@@ -17,7 +17,7 @@ function ModalWithForm({
   return (
     <div
       onClick={handleCloseClick}
-      className={`modal ${isOpen && "modal_opened"} ${className || ""}`}
+      className={`modal ${isOpen ? "modal_opened" : ""} ${className || ""}`}
     >
       <div onClick={(e) => e.stopPropagation()} className="modal__content">
         <h2 className="modal__title">{title}</h2>

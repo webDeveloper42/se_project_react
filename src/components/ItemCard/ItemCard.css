@@ -29,7 +29,6 @@
 .card__header {
   display: flex;
   position: absolute;
-  gap: 10px;
   top: 12px;
   left: 12px;
   right: 12px;
