@@ -18,20 +18,14 @@ function useFormWithValidation(defaultValues = {}) {
       }
 
       if (fields.includes("imageUrl")) {
-        if (!nextValues.imageUrl?.trim()) {
-          nextErrors.imageUrl = "Image URL is invalid.";
+        const rawUrl = nextValues.imageUrl?.trim();
+        if (!rawUrl) {
+          nextErrors.imageUrl = "Image URL is required.";
+        } else if (!/^https?:\/\//i.test(rawUrl)) {
+          nextErrors.imageUrl = 'Image URL must start with "http://" or "https://"';
         } else {
-          const rawUrl = nextValues.imageUrl.trim();
-          const hasProtocol = /^https?:\/\//i.test(rawUrl);
-          const attemptUrl = hasProtocol ? rawUrl : `https://${rawUrl}`;
-
           try {
-            const parsed = new URL(attemptUrl);
-            if (!parsed.protocol.match(/^https?:$/i)) {
-              nextErrors.imageUrl = "Image URL is invalid.";
-            } else if (!parsed.hostname || !parsed.hostname.includes(".")) {
-              nextErrors.imageUrl = "Image URL is invalid.";
-            }
+            new URL(rawUrl);
           } catch {
             nextErrors.imageUrl = "Image URL is invalid.";
           }
@@ -50,8 +44,19 @@ function useFormWithValidation(defaultValues = {}) {
         nextErrors.password = "Password is required.";
       }
 
-      if (fields.includes("avatar") && !nextValues.avatar?.trim()) {
-        nextErrors.avatar = "Avatar URL is required.";
+      if (fields.includes("avatar")) {
+        const rawUrl = nextValues.avatar?.trim();
+        if (!rawUrl) {
+          nextErrors.avatar = "Avatar URL is required.";
+        } else if (!/^https?:\/\//i.test(rawUrl)) {
+          nextErrors.avatar = 'Avatar URL must start with "http://" or "https://"';
+        } else {
+          try {
+            new URL(rawUrl);
+          } catch {
+            nextErrors.avatar = "Avatar URL is invalid.";
+          }
+        }
       }
 
       setErrors(nextErrors);
