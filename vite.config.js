@@ -7,5 +7,5 @@ export default defineConfig(({ command }) => ({
   server: {
     port: 3000,
   },
-  base: command === "build" ? "/se_project_react/" : "/",
+  base: "/",
 }));
