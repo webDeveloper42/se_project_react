@@ -19,14 +19,14 @@ const checkRes = async (res) => {
     try {
       const data = await res.json();
       message = data.message || JSON.stringify(data);
-    } catch (err) {
+    } catch {
       message = `Response body is not valid JSON`;
     }
   } else {
     try {
       const text = await res.text();
       if (text) message = text;
-    } catch (err) {
+    } catch {
       /* ignore */
     }
   }

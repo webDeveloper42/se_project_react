@@ -32,7 +32,7 @@ function useFormWithValidation(defaultValues = {}) {
             } else if (!parsed.hostname || !parsed.hostname.includes(".")) {
               nextErrors.imageUrl = "Image URL is invalid.";
             }
-          } catch (error) {
+          } catch {
             nextErrors.imageUrl = "Image URL is invalid.";
           }
         }

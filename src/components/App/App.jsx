@@ -123,8 +123,8 @@ function App() {
         .then((data) => {
           setWeatherData(filterWeatherData(data));
         })
-        .catch((err) => {
-          (err) => `Error: ${err.status}`("Weather fetch failed", err);
+        .catch((_err) => {
+          (_err) => `Error: ${_err.status}`("Weather fetch failed", _err);
           getWeather(coordinates, apiKey)
             .then((data) => setWeatherData(filterWeatherData(data)))
             .catch((err) => `Error: ${err.status}`);
