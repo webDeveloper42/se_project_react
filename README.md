@@ -33,4 +33,4 @@
 
 ## Demo
 
-[Watch the project demo](https://www.loom.com/share/1ff503c20f0c47f1859d7b14eb49aa45)
+[Watch the project demo](https://www.loom.com/share/1e3f620fca114d8da3b0b22288aad406)
