@@ -1,7 +1,4 @@
-const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://api.whyWeatherWhy.twilightparadox.com"
-    : "http://localhost:3001";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const checkRes = async (res) => {
   if (res.ok) {
