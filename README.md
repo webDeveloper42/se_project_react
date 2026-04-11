@@ -31,6 +31,4 @@
 
 [Link to backend repository](https://github.com/webDeveloper42/se_project_express)
 
-## Demo
-
-[Watch the project demo](https://www.loom.com/share/1e3f620fca114d8da3b0b22288aad406)
+`
