@@ -30,5 +30,3 @@
 ## Backend Repository
 
 [Link to backend repository](https://github.com/webDeveloper42/se_project_express)
-
-`
